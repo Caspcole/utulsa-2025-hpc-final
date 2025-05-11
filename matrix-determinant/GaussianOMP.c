@@ -3,6 +3,7 @@
  #include <stdlib.h>
  #include <string.h>
  #include <math.h>
+ #include <omp.h>
  #include "timer.h"
  int main(int argc, char const *argv[])
 { 
@@ -37,6 +38,7 @@
     {
         logd+=log10(fabs(m[pivot][pivot]));
         d*=m[pivot][pivot];
+        #pragma omp for
         for (int r = pivot+1; r < size; r++)
         {
             double mult=m[r][pivot]/m[pivot][pivot];

@@ -3,7 +3,13 @@
  #include <stdlib.h>
  #include <string.h>
  #include <math.h>
+ #include <pthread.h>
  #include "timer.h"
+ double d;
+ double logd;
+ int size;
+ double ** m;
+ void* Thread_work(void* rank);
  int main(int argc, char const *argv[])
 { 
     
@@ -11,12 +17,12 @@
         printf("usage:%s <size>\n",argv[0]);
         return 1;
     }
-    int size=strtol(argv[1],NULL,10);
+    size=strtol(argv[1],NULL,10);
     const char* sizestr=argv[1];
     char fname[21];
     sprintf(fname,"input/m%sx%s.bin",sizestr,sizestr);
     FILE * fp;
-    double ** m=malloc(size*sizeof(double*));
+    m=malloc(size*sizeof(double*));
     fp = fopen(fname, "r");
     if(NULL==fp){
         printf("error opening file. was size a 4-digit power of 2 or multiple of 1000 between 16 and 5000? ");
@@ -29,23 +35,20 @@
         fread(m[i],sizeof(double),size,fp);
     }
     fclose(fp);
-    double d=1; 
-    double logd=0;
+    d=1; 
+    logd=0;
     double start, finish;
     GET_TIME(start);
-    for (int pivot = 0; pivot < size; pivot++)
-    {
-        logd+=log10(fabs(m[pivot][pivot]));
-        d*=m[pivot][pivot];
-        for (int r = pivot+1; r < size; r++)
-        {
-            double mult=m[r][pivot]/m[pivot][pivot];
-            for(int c=pivot;c<size;c++){
-                m[r][c]-=m[pivot][c]*mult;
-            }
-        }
-        
+    int thread_count=1;
+    pthread_t* thread_handles = malloc (thread_count*sizeof(pthread_t));
+     for (int thread = 0; thread < thread_count; thread++)
+       pthread_create(&thread_handles[thread], NULL,
+           Thread_work, (void*) thread);
+ 
+    for (int thread = 0; thread < thread_count; thread++) {
+       pthread_join(thread_handles[thread], NULL);
     }
+    
     
     
     GET_TIME(finish);
@@ -62,4 +65,20 @@
     free(m);
     printf("Determenant: %lf\nLog(det): %lf\nTime: %f\n\n",d,logd,finish-start);
     return 0;
+}
+
+void* Thread_work(void* rank){
+for (int pivot = 0; pivot < size; pivot++)
+    {
+        logd+=log10(fabs(m[pivot][pivot]));
+        d*=m[pivot][pivot];
+        for (int r = pivot+1; r < size; r++)
+        {
+            double mult=m[r][pivot]/m[pivot][pivot];
+            for(int c=pivot;c<size;c++){
+                m[r][c]-=m[pivot][c]*mult;
+            }
+        }
+        
+    }
 }
