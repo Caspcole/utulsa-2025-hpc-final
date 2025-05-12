@@ -12,14 +12,16 @@
  pthread_mutex_t * done;
  void* Thread_work(void* rank);
  void apply(int pivot, int target);
+int threads;
  int main(int argc, char const *argv[])
 { 
     
-    if(argc!=2){
-        printf("usage:%s <size>\n",argv[0]);
+    if(argc!=3){
+        printf("usage:%s <size> <threads>\n",argv[0]);
         return 1;
     }
     size=strtol(argv[1],NULL,10);
+    threads=strtol(argv[2],NULL,10);
     const char* sizestr=argv[1];
     char fname[21];
     sprintf(fname,"input/m%sx%s.bin",sizestr,sizestr);
@@ -37,8 +39,8 @@
         fread(m[i],sizeof(double),size,fp);
     }
     fclose(fp);
-    d=1; 
-    logd=0;
+    d=m[0][0]; 
+    logd=log10(fabs(m[0][0]));
     double start, finish;
     GET_TIME(start);
 
@@ -51,13 +53,12 @@
     }
     pthread_mutex_unlock(&done[0]);
     
-    int thread_count=1;
-    pthread_t* thread_handles = malloc (thread_count*sizeof(pthread_t));
-     for (int thread = 0; thread < thread_count; thread++)
+    pthread_t* thread_handles = malloc (threads*sizeof(pthread_t));
+     for (int thread = 0; thread < threads; thread++)
        pthread_create(&thread_handles[thread], NULL,
-           Thread_work, (void*) &thread);
+           Thread_work, (void*) thread);
  
-    for (int thread = 0; thread < thread_count; thread++) {
+    for (int thread = 0; thread < threads; thread++) {
        pthread_join(thread_handles[thread], NULL);
     }
     
@@ -76,25 +77,30 @@
     }
     free(m);
     free(done);
-    printf("Determenant: %lf\nLog(det): %lf\nTime: %f\n\n",d,logd,finish-start);
+    printf("Determenant: %lf\nLog(det): %lf\nTime: %f\nThreads:%i \n\n",d,logd,finish-start,threads);
     return 0;
 }
 
 void* Thread_work(void* in){
-    int* rank=in;
+    int rank=in;
     //printf("rank:%i\n",*rank);
-
-    for (int pivot = 0; pivot < size; pivot++)
+    for (int target = rank; target < size; target+=threads)
     {
-        logd+=log10(fabs(m[pivot][pivot]));
-        d*=m[pivot][pivot];
-        for (int r = pivot+1; r < size; r++)
+        for (int pivot = 0; pivot < target; pivot++)
         {
-            apply(pivot,r);
-            
+            //printf("waiting for finish of row %i in thread %i\n",pivot,rank);
+            pthread_mutex_lock(&done[pivot]);
+            pthread_mutex_unlock(&done[pivot]);
+            apply(pivot,target);
+            //printf("in thread %i, row %i to row %i\n", *rank,pivot,target);
         }
+        pthread_mutex_unlock(&done[target]);
+        //printf("done doing %i in thread %i\n",target,rank);
+         logd+=log10(fabs(m[target][target]));
+        d*=m[target][target];
         
     }
+
 }
 
 void apply(int pivot, int target){
