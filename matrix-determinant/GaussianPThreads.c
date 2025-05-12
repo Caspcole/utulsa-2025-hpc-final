@@ -39,8 +39,8 @@ int threads;
         fread(m[i],sizeof(double),size,fp);
     }
     fclose(fp);
-    d=m[0][0]; 
-    logd=log10(fabs(m[0][0]));
+    d=1; 
+    logd=0;
     double start, finish;
     GET_TIME(start);
 
@@ -72,7 +72,7 @@ int threads;
     // free and return
     for (int i = 0; i < size; i++)
     {
-        //for (int j = 0; j < size; j++) printf("%lf ",m[i][j]);printf("\n");
+        for (int j = 0; j < size; j++) printf("%lf ",m[i][j]);printf("\n");
         free(m[i]);
     }
     free(m);
