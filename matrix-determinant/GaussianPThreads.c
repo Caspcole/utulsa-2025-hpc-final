@@ -9,7 +9,9 @@
  double logd;
  int size;
  double ** m;
+ pthread_mutex_t * done;
  void* Thread_work(void* rank);
+ void apply(int pivot, int target);
  int main(int argc, char const *argv[])
 { 
     
@@ -39,11 +41,21 @@
     logd=0;
     double start, finish;
     GET_TIME(start);
+
+    done=malloc(sizeof(pthread_mutex_t)*size);
+    for (int i = 0; i < size; i++)
+    {
+        pthread_mutex_init(&done[i],NULL);
+        pthread_mutex_lock(&done[i]);
+        
+    }
+    pthread_mutex_unlock(&done[0]);
+    
     int thread_count=1;
     pthread_t* thread_handles = malloc (thread_count*sizeof(pthread_t));
      for (int thread = 0; thread < thread_count; thread++)
        pthread_create(&thread_handles[thread], NULL,
-           Thread_work, (void*) thread);
+           Thread_work, (void*) &thread);
  
     for (int thread = 0; thread < thread_count; thread++) {
        pthread_join(thread_handles[thread], NULL);
@@ -63,22 +75,31 @@
         free(m[i]);
     }
     free(m);
+    free(done);
     printf("Determenant: %lf\nLog(det): %lf\nTime: %f\n\n",d,logd,finish-start);
     return 0;
 }
 
-void* Thread_work(void* rank){
-for (int pivot = 0; pivot < size; pivot++)
+void* Thread_work(void* in){
+    int* rank=in;
+    //printf("rank:%i\n",*rank);
+
+    for (int pivot = 0; pivot < size; pivot++)
     {
         logd+=log10(fabs(m[pivot][pivot]));
         d*=m[pivot][pivot];
         for (int r = pivot+1; r < size; r++)
         {
-            double mult=m[r][pivot]/m[pivot][pivot];
-            for(int c=pivot;c<size;c++){
-                m[r][c]-=m[pivot][c]*mult;
-            }
+            apply(pivot,r);
+            
         }
         
     }
+}
+
+void apply(int pivot, int target){
+    double mult=m[target][pivot]/m[pivot][pivot];
+            for(int c=pivot;c<size;c++){
+                m[target][c]-=m[pivot][c]*mult;
+            }
 }
