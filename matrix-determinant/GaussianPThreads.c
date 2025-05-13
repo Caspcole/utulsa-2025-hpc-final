@@ -72,7 +72,7 @@ int threads;
     // free and return
     for (int i = 0; i < size; i++)
     {
-        for (int j = 0; j < size; j++) printf("%lf ",m[i][j]);printf("\n");
+        //for (int j = 0; j < size; j++) printf("%lf ",m[i][j]);printf("\n");
         free(m[i]);
     }
     free(m);
@@ -95,7 +95,7 @@ void* Thread_work(void* in){
             //printf("in thread %i, row %i to row %i\n", *rank,pivot,target);
         }
         pthread_mutex_unlock(&done[target]);
-        //printf("done doing %i in thread %i\n",target,rank);
+        printf("done doing %i in thread %i\n",target,rank);
          logd+=log10(fabs(m[target][target]));
         d*=m[target][target];
         
