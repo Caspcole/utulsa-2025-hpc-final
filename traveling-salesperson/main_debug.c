@@ -1,7 +1,7 @@
 // Async Traveling Salesperson with Pth
 
 // gcc -g -Wall -o main main.c -lm -lpthread
-// ./main 1 256
+// ./main 1
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -22,6 +22,9 @@ long thread_count;
 unsigned int seed = 256;
 pthread_rwlock_t rwlock_travel_matrix = PTHREAD_RWLOCK_INITIALIZER;
 pthread_rwlock_t rwlock_best_tour = PTHREAD_RWLOCK_INITIALIZER;
+// pthread_rwlock_rdlock (&rwlock_travel_matrix); // get readlock
+// pthread_rwlock_wrlock (&rwlock_travel_matrix); // get writelock
+// pthread_rwlock_unlock (&rwlock_travel_matrix); // unlock
 
 double *non_comm_end_time;
 
@@ -84,8 +87,12 @@ int main(int argc, char *argv[])
     exit(1);
   }
 
+  // TODO zero out the matrix before inserting data
+  // TODO add read-write mutex and lock before inserting data?
+
   printf("Entering matrix creation\n");
   char temp_line[MAX_LINE_LEN];
+  // grab write lock
   pthread_rwlock_wrlock(&rwlock_travel_matrix);
   for (int row = 0; row < ROWS; row++)
   {
@@ -108,12 +115,18 @@ int main(int argc, char *argv[])
       token = strtok(NULL, ",");
     }
   }
-
+  // printf("First 5 of last line: %d %d %d %d %d\n",
+  //        travel_matrix[ROWS - 1][0],
+  //        travel_matrix[ROWS - 1][1],
+  //        travel_matrix[ROWS - 1][2],
+  //        travel_matrix[ROWS - 1][3],
+  //        travel_matrix[ROWS - 1][4]);
+  // return writelock
   pthread_rwlock_unlock(&rwlock_travel_matrix);
 
   GET_TIME(start);
 
-  printf("Entering greedy tests\n");
+  // printf("Entering greedy tests\n");
 
   for (thread = 0; thread < thread_count; thread++)
   {
@@ -136,6 +149,7 @@ int main(int argc, char *argv[])
   }
   printf("\n");
 
+  // elapsed = finish - start;
   printf("Number of threads: %ld\n", thread_count);
   printf("Elapsed time = %e seconds\n", elapsed);
   for (int i = 0; i < thread_count; i++)
@@ -161,6 +175,10 @@ void *Find_best_tour(void *arguments)
 
   do
   {
+    // use a thread-safe timer
+
+    // convert the tour finding to a function that returns a tour and value
+
     int city_start = rand_r(&my_seed) % COLS;
     int *test_tour = malloc(COLS * sizeof(int));
     int tour_value = 0;
@@ -175,9 +193,17 @@ void *Find_best_tour(void *arguments)
     else
       free(test_tour);
 
+    // printf("Test value: %d\n", tour_value);
+    // printf("T %ld - Current best value %d: \n", my_rank, my_best_tour_value);
+    // for (int i = 0; i < 5; i++)
+    //   printf(" %d", my_best_tour[i]);
+    // printf("\n");
+
+    // printf("Time diff %f\n", my_working_time - args->start_time);
+
     GET_TIME(my_working_time);
   } while (my_working_time - args->start_time < 60.0);
-
+  // GET_TIME(non_comm_end_time[my_rank]);
   non_comm_end_time[my_rank] = my_working_time;
 
   // grab write lock
@@ -214,12 +240,14 @@ void Find_tour(int *test_tour, int *tour_value, int city_start)
 
     for (int col = 0; col < COLS; col++)
     {
+      // grab read lock
       pthread_rwlock_rdlock(&rwlock_travel_matrix);
       if (!visited[col] && travel_matrix[previous][col] < min_dist)
       {
         min_dist = travel_matrix[previous][col];
         best = col;
       }
+      // release read lock
       pthread_rwlock_unlock(&rwlock_travel_matrix);
     }
     test_tour[row] = best;
