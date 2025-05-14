@@ -77,7 +77,7 @@ int threads;
     }
     free(m);
     free(done);
-    printf("Size:%i\nDetermenant: %lf\nLog(det): %lf\nTime: %f\nThreads:%i \n\n",size, d,logd,finish-start,threads);
+    printf("%f %i %i\n",finish-start,threads,size);
     return 0;
 }
 
