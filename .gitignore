@@ -1,2 +1,7 @@
+
 # Ignore tsp executable
 traveling-salesperson/main
+
+matrix-determinant/input/
+.vscode/
+
