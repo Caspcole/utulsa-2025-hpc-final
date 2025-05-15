@@ -33,18 +33,12 @@
     double logd=0;
     double start, finish;
     GET_TIME(start);
-    for (int pivot = 0; pivot < size; pivot++)
-    {
+    for (int pivot = 0; pivot < size; pivot++) {
         logd+=log10(fabs(m[pivot][pivot]));
         d*=m[pivot][pivot];
-        for (int r = pivot+1; r < size; r++)
-        {
-            double mult=m[r][pivot]/m[pivot][pivot];
-            for(int c=pivot;c<size;c++){
-                m[r][c]-=m[pivot][c]*mult;
-            }
+        for (int r = pivot+1; r < size; r++) {
+            apply(pivot,r);
         }
-        
     }
     
     
