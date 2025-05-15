@@ -223,6 +223,10 @@ void *Find_best_tour(void *arguments)
   return NULL;
 } /* Find_best_tour */
 
+// Use greedy here, look into simulated annealing (requires a lot of hyper parameter tuning)
+// another student used or-op instead of 2-op or 3-op
+
+// one-insert algorithm
 void Find_tour(int *test_tour, int *tour_value, int city_start)
 {
   test_tour[0] = city_start;
