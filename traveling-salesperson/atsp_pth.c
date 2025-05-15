@@ -1,7 +1,7 @@
 // Async Traveling Salesperson with Pth
 
-// Compile: gcc -g -Wall -o main main.c -lm -lpthread
-// Execute: ./main <number of threads> <seed>
+// Compile: gcc -g -Wall -o atsp_pth atsp_pth.c -lm -lpthread
+// Execute: ./atsp_pth <number of threads> <seed>
 
 #include <stdio.h>
 #include <stdlib.h>
