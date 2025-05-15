@@ -1,0 +1,270 @@
+Executing: ./main 1 256
+Entering matrix creation
+Best tour value: 5229
+First 20 cities of best tour found: 165 18 158 46 110 21 195 43 101 24 64 28 87 285 20 159 23 17 197 146
+Number of threads: 1
+Elapsed time = 6.001395e+01 seconds
+-------------------------------
+
+
+Executing: ./main 1 256
+Entering matrix creation
+Best tour value: 5229
+First 20 cities of best tour found: 165 18 158 46 110 21 195 43 101 24 64 28 87 285 20 159 23 17 197 146
+Number of threads: 1
+Elapsed time = 6.002036e+01 seconds
+-------------------------------
+
+
+Executing: ./main 1 256
+Entering matrix creation
+Best tour value: 5229
+First 20 cities of best tour found: 165 18 158 46 110 21 195 43 101 24 64 28 87 285 20 159 23 17 197 146
+Number of threads: 1
+Elapsed time = 6.001717e+01 seconds
+-------------------------------
+
+
+Executing: ./main 1 256
+Entering matrix creation
+Best tour value: 5229
+First 20 cities of best tour found: 165 18 158 46 110 21 195 43 101 24 64 28 87 285 20 159 23 17 197 146
+Number of threads: 1
+Elapsed time = 6.001852e+01 seconds
+-------------------------------
+
+
+Executing: ./main 1 256
+Entering matrix creation
+Best tour value: 5229
+First 20 cities of best tour found: 165 18 158 46 110 21 195 43 101 24 64 28 87 285 20 159 23 17 197 146
+Number of threads: 1
+Elapsed time = 6.003035e+01 seconds
+-------------------------------
+
+
+Executing: ./main 2 256
+Entering matrix creation
+Best tour value: 5248
+First 20 cities of best tour found: 877 17 197 146 170 310 94 122 50 149 171 21 195 43 101 24 64 28 87 285
+Number of threads: 2
+Elapsed time = 6.015991e+01 seconds
+-------------------------------
+
+
+Executing: ./main 2 256
+Entering matrix creation
+Best tour value: 5248
+First 20 cities of best tour found: 877 17 197 146 170 310 94 122 50 149 171 21 195 43 101 24 64 28 87 285
+Number of threads: 2
+Elapsed time = 6.021078e+01 seconds
+-------------------------------
+
+
+Executing: ./main 2 256
+Entering matrix creation
+Best tour value: 5248
+First 20 cities of best tour found: 877 17 197 146 170 310 94 122 50 149 171 21 195 43 101 24 64 28 87 285
+Number of threads: 2
+Elapsed time = 6.017626e+01 seconds
+-------------------------------
+
+
+Executing: ./main 2 256
+Entering matrix creation
+Best tour value: 5248
+First 20 cities of best tour found: 877 17 197 146 170 310 94 122 50 149 171 21 195 43 101 24 64 28 87 285
+Number of threads: 2
+Elapsed time = 6.015885e+01 seconds
+-------------------------------
+
+
+Executing: ./main 2 256
+Entering matrix creation
+Best tour value: 5248
+First 20 cities of best tour found: 877 17 197 146 170 310 94 122 50 149 171 21 195 43 101 24 64 28 87 285
+Number of threads: 2
+Elapsed time = 6.005452e+01 seconds
+-------------------------------
+
+
+Executing: ./main 4 256
+Entering matrix creation
+Best tour value: 5255
+First 20 cities of best tour found: 55 69 54 133 130 45 159 23 17 197 146 170 310 94 122 50 149 171 21 195
+Number of threads: 4
+Elapsed time = 6.043858e+01 seconds
+-------------------------------
+
+
+Executing: ./main 4 256
+Entering matrix creation
+Best tour value: 5255
+First 20 cities of best tour found: 55 69 54 133 130 45 159 23 17 197 146 170 310 94 122 50 149 171 21 195
+Number of threads: 4
+Elapsed time = 6.060162e+01 seconds
+-------------------------------
+
+
+Executing: ./main 4 256
+Entering matrix creation
+Best tour value: 5255
+First 20 cities of best tour found: 55 69 54 133 130 45 159 23 17 197 146 170 310 94 122 50 149 171 21 195
+Number of threads: 4
+Elapsed time = 6.051459e+01 seconds
+-------------------------------
+
+
+Executing: ./main 4 256
+Entering matrix creation
+Best tour value: 5255
+First 20 cities of best tour found: 55 69 54 133 130 45 159 23 17 197 146 170 310 94 122 50 149 171 21 195
+Number of threads: 4
+Elapsed time = 6.049278e+01 seconds
+-------------------------------
+
+
+Executing: ./main 4 256
+Entering matrix creation
+Best tour value: 5255
+First 20 cities of best tour found: 55 69 54 133 130 45 159 23 17 197 146 170 310 94 122 50 149 171 21 195
+Number of threads: 4
+Elapsed time = 6.049766e+01 seconds
+-------------------------------
+
+
+Executing: ./main 8 256
+Entering matrix creation
+Best tour value: 5255
+First 20 cities of best tour found: 55 69 54 133 130 45 159 23 17 197 146 170 310 94 122 50 149 171 21 195
+Number of threads: 8
+Elapsed time = 6.126130e+01 seconds
+-------------------------------
+
+
+Executing: ./main 8 256
+Entering matrix creation
+Best tour value: 5255
+First 20 cities of best tour found: 55 69 54 133 130 45 159 23 17 197 146 170 310 94 122 50 149 171 21 195
+Number of threads: 8
+Elapsed time = 6.131925e+01 seconds
+-------------------------------
+
+
+Executing: ./main 8 256
+Entering matrix creation
+Best tour value: 5255
+First 20 cities of best tour found: 55 69 54 133 130 45 159 23 17 197 146 170 310 94 122 50 149 171 21 195
+Number of threads: 8
+Elapsed time = 6.115817e+01 seconds
+-------------------------------
+
+
+Executing: ./main 8 256
+Entering matrix creation
+Best tour value: 5255
+First 20 cities of best tour found: 55 69 54 133 130 45 159 23 17 197 146 170 310 94 122 50 149 171 21 195
+Number of threads: 8
+Elapsed time = 6.134425e+01 seconds
+-------------------------------
+
+
+Executing: ./main 8 256
+Entering matrix creation
+Best tour value: 5255
+First 20 cities of best tour found: 55 69 54 133 130 45 159 23 17 197 146 170 310 94 122 50 149 171 21 195
+Number of threads: 8
+Elapsed time = 6.123289e+01 seconds
+-------------------------------
+
+
+Executing: ./main 16 256
+Entering matrix creation
+Best tour value: 5255
+First 20 cities of best tour found: 55 69 54 133 130 45 159 23 17 197 146 170 310 94 122 50 149 171 21 195
+Number of threads: 16
+Elapsed time = 6.266282e+01 seconds
+-------------------------------
+
+
+Executing: ./main 16 256
+Entering matrix creation
+Best tour value: 5255
+First 20 cities of best tour found: 55 69 54 133 130 45 159 23 17 197 146 170 310 94 122 50 149 171 21 195
+Number of threads: 16
+Elapsed time = 6.291995e+01 seconds
+-------------------------------
+
+
+Executing: ./main 16 256
+Entering matrix creation
+Best tour value: 5255
+First 20 cities of best tour found: 55 69 54 133 130 45 159 23 17 197 146 170 310 94 122 50 149 171 21 195
+Number of threads: 16
+Elapsed time = 6.288321e+01 seconds
+-------------------------------
+
+
+Executing: ./main 16 256
+Entering matrix creation
+Best tour value: 5255
+First 20 cities of best tour found: 55 69 54 133 130 45 159 23 17 197 146 170 310 94 122 50 149 171 21 195
+Number of threads: 16
+Elapsed time = 6.276094e+01 seconds
+-------------------------------
+
+
+Executing: ./main 16 256
+Entering matrix creation
+Best tour value: 5255
+First 20 cities of best tour found: 55 69 54 133 130 45 159 23 17 197 146 170 310 94 122 50 149 171 21 195
+Number of threads: 16
+Elapsed time = 6.342173e+01 seconds
+-------------------------------
+
+
+Executing: ./main 32 256
+Entering matrix creation
+Best tour value: 5229
+First 20 cities of best tour found: 165 18 158 46 110 21 195 43 101 24 64 28 87 285 20 159 23 17 197 146
+Number of threads: 32
+Elapsed time = 6.563776e+01 seconds
+-------------------------------
+
+
+Executing: ./main 32 256
+Entering matrix creation
+Best tour value: 5248
+First 20 cities of best tour found: 877 17 197 146 170 310 94 122 50 149 171 21 195 43 101 24 64 28 87 285
+Number of threads: 32
+Elapsed time = 6.727949e+01 seconds
+-------------------------------
+
+
+Executing: ./main 32 256
+Entering matrix creation
+Best tour value: 5248
+First 20 cities of best tour found: 877 17 197 146 170 310 94 122 50 149 171 21 195 43 101 24 64 28 87 285
+Number of threads: 32
+Elapsed time = 6.531738e+01 seconds
+-------------------------------
+
+
+Executing: ./main 32 256
+Entering matrix creation
+Best tour value: 5248
+First 20 cities of best tour found: 877 17 197 146 170 310 94 122 50 149 171 21 195 43 101 24 64 28 87 285
+Number of threads: 32
+Elapsed time = 6.673936e+01 seconds
+-------------------------------
+
+
+Executing: ./main 32 256
+Entering matrix creation
+Best tour value: 5248
+First 20 cities of best tour found: 877 17 197 146 170 310 94 122 50 149 171 21 195 43 101 24 64 28 87 285
+Number of threads: 32
+Elapsed time = 6.761037e+01 seconds
+-------------------------------
+
+
