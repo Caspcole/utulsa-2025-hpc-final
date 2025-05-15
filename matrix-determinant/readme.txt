@@ -7,3 +7,5 @@ the results, as they appeared in the terminal.
 Time.txt - the median time across 3 runs for every combination of thread
  count and size tested, pulled from the terminal and formated into a tab seperated
  table.
+ Gaussian_Elimination_Determinants.tex- report on the determinant programing task
+ Gaussian_Elimination_Determinants.tex - source for previous
