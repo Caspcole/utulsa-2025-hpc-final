@@ -7,7 +7,7 @@ output_file="final_output.txt"
 
 for thread_num in 1 2 4 8 16 32; do
     for x in {1..5}; do
-        command="./main $thread_num 256"
+        command="./atsp_pth $thread_num 256"
 
         echo "Executing: $command" >> "$output_file"
         $command >> "$output_file" 2>&1
